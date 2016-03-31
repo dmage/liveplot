@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+import datetime
+
+# for Python 2.x
+try: input = raw_input
+except NameError: pass
+
+INTERVAL = datetime.timedelta(minutes=10)
+
+def main():
+    plt.ion()
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(1,1,1)
+    fig.show()
+    plt.gcf().autofmt_xdate()
+
+    xar = []
+    yar = []
+    while True:
+        value = float(input(""))
+
+        now = datetime.datetime.now()
+        xar.append(now)
+        yar.append(value)
+
+        ax1.clear()
+        ax1.set_xlim(now - INTERVAL, now)
+        ax1.plot(xar, yar)
+        ax1.grid()
+        plt.draw()
+        plt.pause(0.001)
+
+if __name__ == '__main__':
+    main()
